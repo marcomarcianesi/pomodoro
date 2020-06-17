@@ -1,5 +1,6 @@
 import React from 'react';
 import { Vibration } from 'react-native';
+import { registerForLocalNotificationsAsync, sendLocalNotification } from '../../lib/pushNotifications';
 
 const fib = [2, 3, 5, 8, 13, 21, 34];
 const multiplier = 2;
@@ -10,6 +11,11 @@ class Notifier extends React.Component {
     this.state = {
       counter: 0
     };
+  }
+
+  componentDidMount() {    
+    this.startCounting();
+    registerForLocalNotificationsAsync();
   }
 
   componentWillUnmount() {
@@ -36,6 +42,13 @@ class Notifier extends React.Component {
   notify = () => {
     console.log("vibratin")
     Vibration.vibrate([500, 500, 500]);
+    sendLocalNotification({
+      title: "Pomodoro", 
+      body: "Time for a break",
+      android: {
+        icon: '../../assets/notification.png'
+      }
+    })
     this.setState({
       ...this.state,
       counter: this.state.counter + 1
@@ -43,7 +56,6 @@ class Notifier extends React.Component {
   }
 
   render() {
-    this.startCounting();
     return null;
   }
 }

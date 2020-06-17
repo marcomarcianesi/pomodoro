@@ -1,9 +1,8 @@
 import React from 'react';
-import { Animated, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import ProgressBar from 'react-native-progress/Bar';
-import formatTimer from '../lib/formatTimer';
-import BlinkingText from '../lib/BlinkingText';
-import { styles } from '../styles/index';
+import { formatTimer, BlinkingText } from '../../lib';
+import { styles } from '../../styles/index';
 
 class Progress extends React.PureComponent {
   workProgressPercentage = () => {
@@ -31,10 +30,10 @@ class Progress extends React.PureComponent {
   render() {
     return(
       <>
-      <View style={[styles.container, {flex: 3, justifyContent: 'flex-end', flexDirection: 'row'}]}>
-        <View style={[styles.container, {flex: 1, flexDirection: 'column', alignItems: 'flex-end'}]}>
-          <View style={[styles.container, {flex: 5, justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}]}>
-            <View style={[styles.container, { flex: 1, alignItems: 'center' }]}>
+      <View style={[styles.container, styles.flex3, styles.flexRow]}>
+        <View style={[styles.container, styles.flex1, styles.flexColumn]}>
+          <View style={[styles.container, styles.flex5, styles.flexRow, styles.alignEnd]}>
+            <View style={[styles.container, styles.flex1, styles.alignCenter]}>
               <BlinkingText 
                 style={{fontSize: 40, color: 'rgba(179, 58, 58, 1)'}}
               >
@@ -47,14 +46,14 @@ class Progress extends React.PureComponent {
               </BlinkingText>
             </View>
           </View>
-          <View style={[styles.container, {flex: 1, flexDirection: 'row', alignItems: 'flex-end'}]}>
+          <View style={[styles.container, styles.flex1, styles.flexRow, styles.alignEnd]}>
             { 
               !this.props.breaking && <ProgressBar
                 color={this.workProgressBarColor()}
                 progress={this.workProgressPercentage()} 
                 width={null}
                 height={10}
-                style={[styles.container, {flex: 1}]}
+                style={[styles.container, styles.flex1]}
               />
             }
             {
@@ -63,14 +62,14 @@ class Progress extends React.PureComponent {
                 progress={this.breakProgressPercentage()} 
                 width={null}
                 height={10}
-                style={[styles.container, {flex: 1}]}
+                style={[styles.container, styles.flex1]}
               />
             }
           </View>
         </View>
       </View>
-      <View style={[styles.container, {flex: 1, flexDirection: 'row', paddingTop: 5}]}>
-        <View style={[styles.container, {flex: 1, alignItems: 'flex-start'}]}>
+      <View style={[styles.container, styles.flex1, styles.flexRow, {paddingTop: 5}]}>
+        <View style={[styles.container, styles.flex1, styles.alignStart]}>
         {
           !this.props.breaking && <Text>
             {formatTimer(this.props.workedSeconds)}
@@ -82,7 +81,7 @@ class Progress extends React.PureComponent {
           </Text>
         }
         </View>
-        <View style={[styles.container, {flex: 1, alignItems: 'flex-end'}]}>
+        <View style={[styles.container, styles.flex1, styles.alignEnd]}>
         {
           !this.props.breaking && <Text>
             {formatTimer(this.props.workSeconds)}

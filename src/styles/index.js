@@ -1,8 +1,25 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
-const DEBUG = true;
+const DEBUG = false;
+export const controls = {
+  color: 'rgb(150, 150, 150)',
+  size:  60
+}
 export const kaciukasPink = 'rgb(255,165,210)'
+
+const flexes = {
+  flex1:       { flex: 1 },
+  flex2:       { flex: 2 },
+  flex3:       { flex: 3 },
+  flex4:       { flex: 4 },
+  flex5:       { flex: 5 },
+  flexRow:     { flexDirection: 'row' },
+  flexColumn:  { flexDirection: 'column' },
+  alignCenter: { alignItems: 'center' },
+  alignStart:  { alignItems: 'flex-start' },
+  alignEnd:    { alignItems: 'flex-end' }
+}
 
 const styles = StyleSheet.create({
   container: (() => (DEBUG ? {
@@ -19,12 +36,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 20
   },
-  fixedTop: {
-    // ...StyleSheet.absoluteFillObject,
-    top: Constants.statusBarHeight,
-    right: 10,
-    position: 'absolute', // add if dont work with above
-  },
+  ...flexes,
   timeInput: {
     height: 60,
     width: 200,
@@ -49,7 +61,7 @@ const styles = StyleSheet.create({
     padding: 5, 
     flex: 1, 
     alignSelf: 'stretch', 
-    width: 100
+    width: 50
   }
 });
 

@@ -1,13 +1,13 @@
 import 'react-native-gesture-handler'; //make sure it's at the top and there's nothing else before it
 import React from 'react';
+import { Provider } from 'react-redux'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MainNavigation from './navigation/Main';
-import Settings from './settings';
-import Clock from './clock';
-import { Provider } from 'react-redux'
-import store from './redux/store'
-import { kaciukasPink } from './styles/index';
+import MainNavigation from './src/navigation/Main';
+import Settings from './src/settings';
+import Clock from './src/clock';
+import store from './src/redux/store'
+import { kaciukasPink } from './src/styles/index';
 
 const Tab = createBottomTabNavigator();
 const MyTheme = {

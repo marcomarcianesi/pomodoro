@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, ImageBackground } from 'react-native';
-import { styles } from '../styles/index'
-import { Notifier, Controls, Progress } from '.'
-import { Directions } from 'react-native-gesture-handler';
+import { Layout, Notifier, Progress, Controls } from '../components';
 
 class Clock extends React.PureComponent {
   state = {
@@ -110,14 +107,13 @@ class Clock extends React.PureComponent {
 
   render() {
     return (
-      <View style={styles.root}>
+      <Layout>
         <Progress {...this.progressProps()} />    
         {
           (this.shouldBreak() || this.shouldWork()) && <Notifier />
         }
         <Controls {...this.controlsProps()} />
-        <ImageBackground style={[styles.container, styles.logo]} resizeMode={'contain'} source={require('../assets/pomodoro.png')} />
-      </View>
+      </Layout>
     )
   }
 };
